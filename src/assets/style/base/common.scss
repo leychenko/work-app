@@ -1,0 +1,36 @@
+.title{
+	font-family: $fontFamily;
+	@include adaptiveValue("font-size", 32, 20);
+}
+.subtitle{
+	@include adaptiveValue("font-size", 21, 16);
+	font-family: $fontFamily;
+	font-weight: 700;
+}
+.test{
+	color: red;
+}
+.button{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap:toRem(5);
+	color: #fff;
+	@include adaptiveValue("padding-right", 24, 12);
+	@include adaptiveValue("padding-left", 24, 12);
+	background:$orangeColor ;
+	@include adaptiveValue("font-size", 18, 14);
+	font-weight: 700;
+	line-height: math.div( 36, 12);
+	letter-spacing: toRem(0.5);
+	border-radius: toRem(4);
+	border: toRem(1) solid transparent;
+	transition: all 0.3s ease 0s;
+	@media (any-hover: hover){
+		&:hover{
+			color: #fff;
+			border: toRem(1) solid $mainColor;
+			box-shadow: 0 0 toRem(6) toRem(1);
+		}
+	}
+}
