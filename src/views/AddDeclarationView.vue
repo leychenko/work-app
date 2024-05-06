@@ -59,76 +59,12 @@ export default {
 			{this.addItem(this.declaration)
 			this.declaration = {}}
 		},
-		searchData(){
-			console.log(this.getItemCurrent(this.inpVal));
-			this.getItemCurrent(this.inpVal)
-			this.inpVal = null
-		}
 	 },
 
 }
 </script>
 
 <style scoped lang="scss">
-.input{
-	border: 1px solid black;
-}
-.message{
-	color: red;
-	font-weight: 700;
-	font-size: 24px;
-}
-.container{
-	padding-top: 100px;
-	max-width: 900px;
-	margin: 0 auto;
-	padding-bottom: 100px;
-}
-.form {
-	display: flex;
-	flex-direction: column;
-	padding: 40px;
-	border: 2px solid black;
-	gap: 25px;
-	border-radius: 10px;
- background: #fff5;
-  backdrop-filter: blur(15px);
-		// .form__line
-		&__line {
-			padding: 10px;
-			display: flex;
-			align-items: center;
-			font-size: 25px;
-			font-weight: 700;
-			gap: 20px;
-			justify-content: space-between;
-		}
-		// .form__label
-		&__label {
-			color: black;
-			cursor: pointer;
-		}
-		// .form__input
-		&__input {
-			flex: 0 1 50%;
-			padding: 5px;
-			font-size: 25px;
-			// border: 2px solid black;
-			border-radius: 5px;
-			background-color: #fff;
-			outline: 2px solid orangered;
-			&:focus{
-					background-color: rgb(224, 245, 202);
-				}
-			
-		}
-		// .form__button
-		&__button {
-			align-self: flex-start;
-			display: flex;
-			align-items: center;
-		}
-}
 .declaration {
 	display: flex;
 	flex-direction: column;

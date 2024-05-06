@@ -31,6 +31,8 @@ import { far } from '@fortawesome/free-regular-svg-icons'
 library.add(fab, fas, far)
 
 
-createApp(App).use(store).use(router).use(vuetify).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
+createApp(App)
+    .use(store)
+    .use(router).use(vuetify).component('font-awesome-icon', FontAwesomeIcon).mount('#app')
 
 

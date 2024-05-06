@@ -1,7 +1,8 @@
 import DbOperations from '../helpers/DbOperations'
 const collectionDB = new DbOperations('financeData')
+import { HTTP } from '@/store/helpers/http-common.js'
 
-import { getInfo,test} from '@/store/helpers/globalFunction.js'
+import { getInfo, test } from '@/store/helpers/globalFunction.js'
 export default {
     namespaced: true,
     state: () => ({
@@ -21,30 +22,38 @@ export default {
             'Грудень',
         ],
         filteredList: null,
-        loading: false,
-        error: null,
         targetYear: new Date().getFullYear(),
         targetMonth: new Date().toLocaleDateString('uk-UA').slice(3, 5),
         tax: 0.05,
         dayBonus: 700,
         nightBonus: 1200,
+        currency: [],
     }),
     getters: {
-        getTaxForThreeMonth:(state)=> test(state.financeObjList,'sum',state.tax),
+        getTargetYear: (state) => state.targetYear,
+        getTaxForThreeMonth: (state) => test(state.financeObjList, 'sum', state.tax),
         getFilteredList: (state) => state.filteredList,
         getTotalTaxValue: (state) => getInfo(state.financeObjList, 'sum', state.tax),
-        getDayBonusSum: (state) =>
-            getInfo(state.financeObjList, 'dayDeclaration', state.dayBonus),
-        getNightBonusSum: (state) =>
-            getInfo(state.financeObjList, 'nightDeclaration', state.nightBonus),
+        getDayBonusSum: (state) => getInfo(state.financeObjList, 'dayDeclaration', state.dayBonus),
+        getNightBonusSum: (state) => getInfo(state.financeObjList, 'nightDeclaration', state.nightBonus),
         getSalary: (state) => getInfo(state.financeObjList, 'sum', 1),
         hasError: (state) => state.error,
         getMonthList: (state) => state.monthList,
         getItemsListFinance: ({ financeObjList }) => financeObjList,
         getItemById: (state) => (itemId) => state.financeObjList.find((item) => item.id == itemId),
+        getTotalSum: (state) => state.financeObjList.reduce((prevEl, item) => prevEl + item.sum, 0),
+        getCorrectCurrency: (state) => {
+            HTTP.get().then((response) => {
+                state.currency = response.data
+            })
+        },
+        getCurrency: (state) => state.currency,
     },
     mutations: {
         setItemsList(state, itemsList) {
+            state.financeObjList = itemsList
+        },
+        setItemFilteredList(state, itemsList) {
             state.financeObjList = itemsList
         },
 
@@ -122,7 +131,7 @@ export default {
                     commit('setLoading', false)
                 })
         },
-        loadFilteredData({ commit }, { fieldTitle, compareOperator, valueToCompare }) {
+        loadFilteredList({ commit }, { fieldTitle, compareOperator, valueToCompare }) {
             commit('setError', null)
             commit('setLoading', true)
             collectionDB

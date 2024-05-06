@@ -15,9 +15,18 @@ const routes = [
     {
         path: '/data-page',
         name: 'data-page',
-        component: () => import(/* webpackChunkName: "addDeclaration" */ '../views/DataPageView.vue'),
+        component: () => import(/* webpackChunkName: "data-page" */ '../views/DataPageView.vue'),
     },
-
+    {
+        path: '/bonus',
+        name: 'bonus',
+        component: () => import(/* webpackChunkName: "data-page" */ '../views/BonusView.vue'),
+    },
+    {
+        path: '/info',
+        name: 'info',
+        component: () => import(/* webpackChunkName: "data-page" */ '../views/SearchPageView.vue'),
+    },
 ]
 
 const router = createRouter({

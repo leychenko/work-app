@@ -1,0 +1,50 @@
+.info {
+	@include adaptiveValue("padding-top", 150,100 );
+}
+.form {
+		// .form__line
+		&__line {
+		}
+		// .form__label
+		&__label {
+		}
+		// .form__action
+		&__action {
+			display: flex;
+			justify-content: space-between;
+		}
+		// .form__button
+		&__button {
+			@media (max-width:$mobile){
+				 	width: 100%; 
+			}
+		}
+}
+.result {
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	@include adaptiveValue("padding", 40, 10);
+	border: toRem(2) solid black;
+	border-radius: toRem(10);
+ background: #fff5;
+  backdrop-filter: blur(toRem(15));
+  @include adaptiveValue("font-size", 20, 18);
+  color: #fff;
+  &__head{
+	@include adaptiveValue("font-size", 25, 21);
+	font-weight: 700;
+	padding: toRem(30);
+  }
+		// .result__item
+		&__item {
+		}
+		// .result__total
+		&__total {
+			span{
+				color: rgb(146, 248, 62);
+				font-weight: 700;
+				@include adaptiveValue("font-size", 22, 20);
+			}
+		}
+}

@@ -28,3 +28,47 @@ export function test(arr, titleVal, val) {
     return Math.ceil(result.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val)
  }
 
+export function sortData(arr) {
+    return arr.sort((a, b) => (a.date > b.date ? 1 : -1))
+}
+
+export async function getWeatherInfo() {
+    const server =
+        'https://api.openweathermap.org/data/2.5/weather?units=metric&q=Kyiv&appid=fb85ba079f55e0cb44d67f9451503453'
+	
+
+    const response = await fetch(server, {
+        method: 'GET',
+    })
+    const responseResult = await response.json()
+
+    if (response.ok) {
+      return getWeather(responseResult)
+		  
+    }
+	  
+}
+
+ function getWeather(data) {
+    const location = data.name
+    const temp = Math.round(data.main.temp)
+    const feelsLike = Math.round(data.main.feels_like)
+    const weatherStatus = data.weather[0].main
+    const weatherIcon = data.weather[0].icon
+
+    return { location, temp, feelsLike, weatherStatus, weatherIcon }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

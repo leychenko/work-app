@@ -1,0 +1,43 @@
+.weather {
+	@include adaptiveValue("padding-top", 200, 100);
+	
+		// .weather__container
+		&__container {
+			border-radius: toRem(10);
+			display: flex;
+			justify-content: space-between;
+			@include adaptiveValue("padding", 25, 15);
+			color: #fff;
+			background: rgb(206, 237, 162);
+			backdrop-filter: blur(15px);
+		}
+		// .weather__info
+		&__info {
+			display: flex;
+			flex-direction: column;
+			gap: toRem(5);
+			@include adaptiveValue("font-size", 22, 17);
+		}
+		// .weather__city
+		&__city {
+			padding-bottom: toRem(20);
+		}
+		// .weather__temp
+		&__temp {
+		}
+		// .weather__icon
+		&__icon{
+			img{
+				width: 100%;
+			}
+		}
+		// .weather__feelsLike
+		&__feelsLike {
+			
+		}
+		// .weather__weatherStatus
+		&__weatherStatus {
+			justify-self: end;
+			@include adaptiveValue("font-size", 23, 17);
+		}
+}

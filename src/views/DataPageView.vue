@@ -39,7 +39,6 @@ export default {
         return {
             message: null,
             financeDataObj: {},
-				allTaxValue:{}
         }
     },
 	 
@@ -52,7 +51,6 @@ export default {
 	 },
     methods: {
 		...mapActions('financeData',['addItem','loadList','loadFilteredData']),
-		// ...mapActions('allTaxData',['addItemTax']),
         addData() {
             if (this.financeDataObj.sum && this.financeDataObj.dayDeclaration >= 0 && this.financeDataObj.nightDeclaration >= 0)
 				{ 
@@ -70,67 +68,5 @@ export default {
 
 <style lang="scss" scoped>
 
-.container {
-	padding-top: 100px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-.form {
-    display: flex;
-    flex-direction: column;
-    padding: 40px;
-    border: 2px solid black;
-    gap: 25px;
-    border-radius: 10px;
-    background: #fff5;
-    backdrop-filter: blur(15px);
-    // .form__line
-    &__line {
-        padding: 10px;
-        display: flex;
-        align-items: center;
-        font-size: 25px;
-        font-weight: 700;
-        gap: 20px;
-        justify-content: space-between;
-    }
-    // .form__label
-    &__label {
-        color: black;
-        cursor: pointer;
-    }
-    // .form__input
-    &__input {
-        flex: 0 1 50%;
-        padding: 5px;
-        font-size: 25px;
-        // border: 2px solid black;
-        border-radius: 5px;
-        background-color: #fff;
-        outline: 2px solid orangered;
-        &:focus {
-            background-color: rgb(224, 245, 202);
-        }
-    }
-    // .form__button
-    &__button {
-        align-self: flex-start;
-        display: flex;
-        align-items: center;
-		  gap: 5px;
 
-    }
-}
-.message{
-	color: red;
-	font-size: 22px;
-}
-
-
-
-
-
-.input-test{
-	background-color: #fff;
-}
 </style>
