@@ -6,8 +6,8 @@
 	</div>
 	    	 <div class="weather__info">
 	    	 	<div class="weather__city">{{ res.location }}</div>
-			    <div class="weather__temp">Температура : {{ res.temp }} ℃</div>
-			    <div class="weather__feelsLike">Відчувається як : {{ res.feelsLike }} ℃</div>
+			    <div class="weather__temp">Зараз : {{ res.temp }} ℃</div>
+			    <div class="weather__feelsLike">Відчув. : {{ res.feelsLike }} ℃</div>
 			    
 	    	 </div>
 			 <div class="weather__icon">

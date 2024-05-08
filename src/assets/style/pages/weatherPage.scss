@@ -5,7 +5,7 @@
 		&__container {
 			border-radius: toRem(10);
 			display: flex;
-			max-width: 40%;
+			max-width: 50%;
 			justify-content: space-between;
 			@include adaptiveValue("padding", 25, 15);
 			color: #fff;
