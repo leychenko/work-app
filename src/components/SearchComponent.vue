@@ -2,6 +2,8 @@
     <main-master-page>
         <template #main>
             <div class="info">
+			<button-home-component/>
+					
                 <form class="form">
                     <div class="form__line">
                         <label class="form__label">Введіть номер місяця</label>
@@ -65,12 +67,13 @@
 
 <script>
 import MainMasterPage from '@/masterpages/MainMasterPage.vue'
+import ButtonHomeComponent from '@/components/ButtonHomeComponent.vue';
 import {sortData} from '@/store/helpers/globalFunction';
 import { mapGetters, mapActions } from 'vuex'
 export default {
     name: 'SearchComponent',
     components: {
-        MainMasterPage,
+        MainMasterPage,ButtonHomeComponent
     },
     data() {
         return {
@@ -100,22 +103,13 @@ export default {
         clear() {
             this.loadFilteredList({ fieldTitle: 'month', compareOperator: '==', valueToCompare: this.date })
         },
+		  goBack(){
+			this.$router.go(-1)
+		  }
     },
 }
 </script>
 
 <style lang="scss" scoped>
-table{
-	border: 1px solid black;
-	text-align: center;
-}
 
-td{
-	padding: 10px;
-	border: 1px solid black;
-}
-.test1{
-	display: flex;
-	flex-direction: column
-}
 </style>

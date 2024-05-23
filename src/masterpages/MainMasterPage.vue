@@ -1,12 +1,17 @@
 <template>
-	<loading-component v-if="isLoading"/>
-		<error-component v-else-if="hasError"/>
-	 <header-component/>
+	<div class="main-container">
+		<loading-component v-if="isLoading"/>
+			<error-component v-else-if="hasError"/>
+		 <header-component/>
+	
+	<slot name="button-home">
 
-	 	<slot name="main">
-	
-		 </slot>
-	
+	</slot>
+		 	<slot name="main">
+		
+			 </slot>
+		
+	</div>
 </template>
 
 <script>
@@ -30,6 +35,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 
 </style>

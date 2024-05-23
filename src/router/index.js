@@ -27,6 +27,11 @@ const routes = [
         name: 'info',
         component: () => import(/* webpackChunkName: "data-page" */ '../views/SearchPageView.vue'),
     },
+    {
+        path: '/searchDecl',
+        name: 'searchDecl',
+        component: () => import(/* webpackChunkName: "data-page" */ '../views/SearchDeclarationView.vue'),
+    },
 ]
 
 const router = createRouter({

@@ -43,17 +43,18 @@ import CurrencyComponent from '@/components/CurrencyComponent.vue'
                     },
                     titleLabel: 'Фінанси',
                 },
-                {
-                    to: {
-                        name: 'bonus',
-                    },
-                    titleLabel: 'bonus',
-                },
+
 					 {
                     to: {
                         name: 'info',
                     },
-                    titleLabel: 'info',
+                    titleLabel: 'Фін.пошук',
+                },
+					 {
+                    to: {
+                        name: 'searchDecl',
+                    },
+                    titleLabel: 'Пошук декл.',
                 },
             ],
             isMenuActive: false,

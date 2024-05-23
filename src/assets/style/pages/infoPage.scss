@@ -1,9 +1,14 @@
 .info {
-	@include adaptiveValue("padding-top", 150,100 );
+	
 }
 .form {
+
 		// .form__line
 		&__line {
+			display: flex;
+			@media (max-width:$mobile){
+				 flex-direction: column; 
+			}
 		}
 		// .form__label
 		&__label {
@@ -12,6 +17,11 @@
 		&__action {
 			display: flex;
 			justify-content: space-between;
+			gap: toRem(10);
+			@media (max-width:$mobile){
+				 flex-direction: column; 
+			}
+			
 		}
 		// .form__button
 		&__button {
@@ -24,7 +34,7 @@
 	display: grid;
 	grid-template-columns: 1fr;
 	justify-items: center;
-	@include adaptiveValue("padding", 40, 10);
+	@include adaptiveValue("padding", 40, 3);
 	border: toRem(2) solid black;
 	border-radius: toRem(10);
  background: #fff5;

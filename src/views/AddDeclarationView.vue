@@ -2,6 +2,8 @@
 	<main-master-page>
 		<template #main>
 			<div class="container">
+			<button-home-component/>
+			
     		<form class="form">
 			<div class="form__line">
 				<label class="form__label" for="title">Назва Товару</label>
@@ -26,12 +28,12 @@
 <script>
 import { mapGetters,mapActions } from 'vuex';
 import MainMasterPage from '@/masterpages/MainMasterPage.vue';
-
+import ButtonHomeComponent from '@/components/ButtonHomeComponent.vue';
 
 export default {
     name: 'AddDeclarationView',
 	 components: {
-		MainMasterPage,
+		MainMasterPage,ButtonHomeComponent
 	 },
 	 data() {
 		return {

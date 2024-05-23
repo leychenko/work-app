@@ -2,6 +2,8 @@
     <main-master-page>
         <template #main>
             <div class="container">
+			<button-home-component/>
+					
                 <form class="form">
                     <div class="form__line">
                         <label class="form__label" for="1">Сумма сплати</label>
@@ -28,12 +30,14 @@
 
 <script>
 import MainMasterPage from '@/masterpages/MainMasterPage.vue'
+import ButtonHomeComponent from '@/components/ButtonHomeComponent.vue';
+
 import { mapGetters,mapActions } from 'vuex'
 
 export default {
     name: 'DataPageView',
     components: {
-        MainMasterPage,
+        MainMasterPage,ButtonHomeComponent
     },
     data() {
         return {

@@ -4,6 +4,7 @@ export default {
     namespaced: true,
     state: () => ({
         declarationList: [],
+        filteredList: [],
         loading: false,
         error: null,
         inputValue: null,
@@ -13,14 +14,17 @@ export default {
         getTaxValue: (state) => state.taxValue,
         hasError: (state) => state.error,
         getItemsList: ({ declarationList }) => declarationList,
-		  getItemCurrent:state=>(title)=>state.declarationList.filter(item=>item.title===title),
+        getItemCurrent: (state) => (title) => state.declarationList.filter((item) => item.title === title),
         getItemById: (state) => (itemId) => state.declarationList.find((item) => item.id == itemId),
-		  getDeclarationList:state=>state.declarationList
+        getFilteredDeclarationList: (state) => state.filteredList,
     },
     mutations: {
         setItemsList(state, itemsList) {
             state.declarationList = itemsList
         },
+		  setFilteredList(state, itemsList){
+			state.filteredList = itemsList
+		  },
 
         setLoading(state, value) {
             state.loading = value
@@ -92,13 +96,14 @@ export default {
                     commit('setLoading', false)
                 })
         },
-        loadFilteredData({ commit }, { fieldTitle, compareOperator, valueToCompare }) {
+        loadFilteredList({ commit }, { fieldTitle, compareOperator, valueToCompare }) {
             commit('setError', null)
             commit('setLoading', true)
             collectionDB
                 .loadFilteredData(fieldTitle, compareOperator, valueToCompare)
                 .then((list) => {
-                    commit('setItemsList', list)
+						console.log(list)
+                    commit('setFilteredList', list)
                 })
                 .catch((error) => {
                     commit('setError', error)

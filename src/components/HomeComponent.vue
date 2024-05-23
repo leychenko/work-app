@@ -2,13 +2,13 @@
 	<main-master-page>
 		 <template #main >
          <div class="card">
-         	<router-link :to="{name:'bonus'}" class="card__item item">
+         	<div class="card__item item">
 					<h4 class="item__title subtitle">Бонуси :</h4>
 					<div class="item__info">
 						<p>Бонусів на {{correctMonth.date}}</p><span>{{countBonus}} грн.</span>
 					</div>
-				</router-link>
-				<router-link :to="{name:'home'}" class="card__item item">
+				</div>
+				<router-link :to="{name:'bonus'}" class="card__item item">
 					<h4 class="item__title subtitle">Зарплата :</h4>
 					<div class="item__info">
 						<p>Зарплата на {{correctMonth.date}}</p><span>{{getSumSalary}} грн.</span>
@@ -29,6 +29,8 @@
 					</div>
 				</div>
          </div>
+
+
         </template>
 	</main-master-page>
 </template>
@@ -104,10 +106,8 @@ import { mapGetters, mapActions } from 'vuex'
             this.obj = { ...item }
         },
 
-		  t(){
-			this.loadFilteredList({ fieldTitle:'month', compareOperator:'==', valueToCompare:this.date})
-			// console.log(this.loadFilteredList({ fieldTitle:'month', compareOperator:'==', valueToCompare:this.date}));
-		  }
+
+
     },
 }
 </script>
