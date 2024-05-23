@@ -44,8 +44,8 @@ td{
 	@include adaptiveValue("padding", 10, 3);
 	border: 1px solid black;
 }
-.main-container{
-	@include adaptiveValue("padding-top", 150,100 );
+.main-container-block{
+	@include adaptiveValue("padding-top", 150,100);
 }
 
 

@@ -9,7 +9,7 @@
 			justify-content: space-between;
 			@include adaptiveValue("padding", 25, 15);
 			color: #fff;
-			background: rgb(206, 237, 162);
+			background: linear-gradient(90deg, rgba(3,23,150,0.8183648459383753) 0%, rgba(9,9,121,0.6082808123249299) 35%, rgba(1,86,187,0.2497373949579832) 100%);
 			backdrop-filter: blur(15px);
 		}
 		// .weather__info

@@ -23,7 +23,7 @@ export default {}
   -moz-osx-font-smoothing: grayscale;
 }
 body{
-	background-color: $bgColor;
+	background: rgb(88,108,50)
 }
 nav {
 	display: flex;

@@ -1,6 +1,5 @@
 .card {
-	// max-width: 950px;
-	padding-top: 100px;
+	// @include adaptiveValue("padding-top", 100, 30);
 	margin: 0 auto;
 	display: grid;
 	grid-template-columns: repeat(auto-fit,minmax(280px,1fr));

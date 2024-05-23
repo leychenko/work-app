@@ -17,7 +17,7 @@ export default {
     components: {
         HomeComponent,
         WeatherComponent,
-        LoadingComponent,
+        LoadingComponent
         
     },
     computed: {

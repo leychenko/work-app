@@ -1,5 +1,5 @@
 <template>
-	<div class="main-container">
+	<div class="main-container-block">
 		<loading-component v-if="isLoading"/>
 			<error-component v-else-if="hasError"/>
 		 <header-component/>
