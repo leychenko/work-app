@@ -7,7 +7,8 @@
 					<p>В гривні : {{getAllSumSalary.showText}} грн.</p>
 					<p v-for="item in currencyUSD" :key="item.id">В доларах : {{(getAllSumSalary.resNumber/ item.rateSell).toFixed(2)}} $.</p>
 					<p v-for="item in currencyEURO" :key="item.id">В євро : {{(getAllSumSalary.resNumber/ item.rateSell).toFixed(2)}} €</p>
-					<p>Залишилось до цілі : {{howLeftMoneyToObj}} грн.</p>
+					<p>Залишилось до цілі :</p>
+					<p>{{howLeftMoneyToObj}} грн.</p>
 				</div>
 			</div>
 		</div>
