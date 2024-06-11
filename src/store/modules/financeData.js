@@ -25,8 +25,8 @@ export default {
         targetYear: new Date().getFullYear(),
         targetMonth: new Date().toLocaleDateString('uk-UA').slice(3, 5),
         tax: 0.05,
-        dayBonus: 700,
-        nightBonus: 1200,
+        dayBonus: 1000,
+        nightBonus: 1000,
         currency: [],
     }),
     getters: {
