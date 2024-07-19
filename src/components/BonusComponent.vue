@@ -55,12 +55,13 @@ import { mapGetters,mapActions } from 'vuex';
 				result = totalSalary - tax - bonusNight - bonusDay
 				
 				
-				
+				console.log(result);
 				return result
 			},
 			getTotalSalaryPer2024Year(){
 				let result
-				const dateRegex = new RegExp(`\\d{2}.(0[6]|1[0-2]).2024`)
+				const dateRegex = new RegExp(`\\d{2}.(0[6-9]|1[0-2]).2024`)
+				console.log(dateRegex)
 				const newSalary = this.getItemsListFinance.filter(item=>item.date.match(dateRegex))
 				const bonus = (newSalary.reduce((prevEl,item)=>prevEl + item.nightDeclaration + item.dayDeclaration,0)) * 1000
 				const totalSalary = newSalary.reduce((prevEl,item)=>prevEl + item.sum,0)
