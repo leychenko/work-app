@@ -71,7 +71,7 @@ import { mapGetters,mapActions } from 'vuex';
 			},
 			getAllSumSalary(){
 				const resNumber = this.getTotalSalaryPerYear + this.getTotalSalaryPer2024Year
-				const showText = resNumber.toString().replace(/(\d{3})\B/g,"$& ")
+				const showText = resNumber.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, " ")
 			 return {resNumber,showText}
 			}
 		},
