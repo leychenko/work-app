@@ -23,7 +23,7 @@ import { mapGetters,mapActions } from 'vuex';
 		name:'BonusComponent',
 		data() {
 			return {
-				money: 4000000
+				money: 2500000
 			}
 		},
 		computed: {
@@ -43,34 +43,47 @@ import { mapGetters,mapActions } from 'vuex';
 			return this.getCurrency.filter(el=>el.currencyCodeA === 978 && el.currencyCodeB === 980 )
 		},
 
-			getTotalSalaryPerYear(){
-				let result
-				const dateRegex = new RegExp(`\\d{2}.([0][1-5]).2024`)
-				const oldSalary = this.getItemsListFinance.filter(item=>item.date.match(dateRegex))
+			// getTotalSalaryPerYear(){
+			// 	let result
+			// 	const dateRegex = new RegExp(`\\d{2}.([0][1-5]).2024`)
+			// 	const oldSalary = this.getItemsListFinance.filter(item=>item.date.match(dateRegex))
 			
-				const bonusNight = (oldSalary.reduce((prevEl,item)=>prevEl + item.nightDeclaration,0)) * 700
-				const bonusDay = (oldSalary.reduce((prevEl,item)=>prevEl + item.dayDeclaration,0)) * 1200
-				const totalSalary = oldSalary.reduce((prevEl,item)=>prevEl + item.sum,0)
-				const tax = totalSalary * 0.05
-				result = totalSalary - tax - bonusNight - bonusDay
+			// 	const bonusNight = (oldSalary.reduce((prevEl,item)=>prevEl + item.nightDeclaration,0)) * 700
+			// 	const bonusDay = (oldSalary.reduce((prevEl,item)=>prevEl + item.dayDeclaration,0)) * 1200
+			// 	const totalSalary = oldSalary.reduce((prevEl,item)=>prevEl + item.sum,0)
+			// 	const tax = totalSalary * 0.05
+			// 	result = totalSalary - tax - bonusNight - bonusDay
 				
 				
-				console.log(result);
-				return result
-			},
-			getTotalSalaryPer2024Year(){
+			// 	console.log(result);
+			// 	return result
+			// },
+			// getTotalSalaryPer2024Year(){
+			// 	let result
+			// 	const dateRegex = new RegExp(`\\d{2}.(0[6-9]|1[0-2]).2024`)
+			// 	const newSalary = this.getItemsListFinance.filter(item=>item.date.match(dateRegex))
+			// 	const bonus = (newSalary.reduce((prevEl,item)=>prevEl + item.nightDeclaration + item.dayDeclaration,0)) * 1000
+			// 	const totalSalary = newSalary.reduce((prevEl,item)=>prevEl + item.sum,0)
+			// 	const tax = totalSalary * 0.05
+			// 	result = totalSalary - tax - bonus
+			// 	return result
+			// },
+			getTotalSalaryPer2025Year(){
+	         const targetYear = new Date().getFullYear()
 				let result
-				const dateRegex = new RegExp(`\\d{2}.(0[6-9]|1[0-2]).2024`)
-				console.log(dateRegex)
+				const dateRegex = new RegExp(`\\d{2}.(0[1-9]|1[0-2]).${targetYear}`)
+				
 				const newSalary = this.getItemsListFinance.filter(item=>item.date.match(dateRegex))
 				const bonus = (newSalary.reduce((prevEl,item)=>prevEl + item.nightDeclaration + item.dayDeclaration,0)) * 1000
 				const totalSalary = newSalary.reduce((prevEl,item)=>prevEl + item.sum,0)
-				const tax = totalSalary * 0.05
+				const tax = totalSalary * 0.06
 				result = totalSalary - tax - bonus
+				console.log(result);
+				
 				return result
 			},
 			getAllSumSalary(){
-				const resNumber = this.getTotalSalaryPerYear + this.getTotalSalaryPer2024Year
+				const resNumber = this.getTotalSalaryPer2025Year
 				const showText = resNumber.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, " ")
 			 return {resNumber,showText}
 			}

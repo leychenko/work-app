@@ -10,6 +10,7 @@ import HomeComponent from '@/components/HomeComponent.vue'
 import WeatherComponent from '@/components/WeatherComponent.vue'
 import LoadingComponent from '@/components/LoadingComponent.vue'
 
+
 import { mapGetters } from 'vuex'
 
 export default {
@@ -17,7 +18,8 @@ export default {
     components: {
         HomeComponent,
         WeatherComponent,
-        LoadingComponent
+        LoadingComponent,
+		  
         
     },
     computed: {

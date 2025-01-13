@@ -102,7 +102,6 @@ import { mapGetters, mapActions } from 'vuex'
             }
         },
         onEdit(item) {
-			console.log({ ...item });
             this.obj = { ...item }
         },
 

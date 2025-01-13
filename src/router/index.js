@@ -18,10 +18,30 @@ const routes = [
         component: () => import(/* webpackChunkName: "data-page" */ '../views/DataPageView.vue'),
     },
     {
+        path: '/payment-page',
+        name: 'payment-page',
+        component: () => import(/* webpackChunkName: "data-page" */ '../views/PaymentView.vue'),
+        //   children: {
+        //       path: '/searchForDate-page',
+        //       name: 'searchForDate-page',
+        //   },
+    },
+    {
+        path: '/searchForDate-page',
+        name: 'searchForDate-page',
+        component: () => import(/* webpackChunkName: "data-page" */ '../components/SearchForYearActComponent.vue'),
+    },
+    {
+        path: '/searchForNumberAct-page',
+        name: 'searchForNumberAct-page',
+        component: () => import(/* webpackChunkName: "data-page" */ '../components/SearchForNumberAct.vue'),
+    },
+    {
         path: '/bonus',
         name: 'bonus',
         component: () => import(/* webpackChunkName: "data-page" */ '../views/BonusView.vue'),
     },
+
     {
         path: '/info',
         name: 'info',
@@ -31,6 +51,11 @@ const routes = [
         path: '/searchDecl',
         name: 'searchDecl',
         component: () => import(/* webpackChunkName: "data-page" */ '../views/SearchDeclarationView.vue'),
+    },
+    {
+        path: '/chartPage',
+        name: 'chartPage',
+        component: () => import(/* webpackChunkName: "data-page" */ '../views/ChartInfoView.vue'),
     },
 ]
 

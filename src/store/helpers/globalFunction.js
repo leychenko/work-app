@@ -1,9 +1,31 @@
 export function getInfo(arr, titleVal, val) {
 	const targetYear = new Date().getFullYear().toString()
 	const targetMonth = new Date().toLocaleDateString('uk-UA').slice(3, 5)
+	console.log(targetMonth);
+	
 	const test = new RegExp(`\\d{2}.${targetMonth}.${targetYear}`)
  const correctMonth = arr.filter((item) => item.date.match(test))
-    return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val)
+   //  return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val)
+	 if (targetYear >= 2025) return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2025)
+     else return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2024)
+}
+export function getMySalary(arr, titleVal, val) {
+    const targetYear = new Date().getFullYear().toString()
+    const targetMonth = new Date().toLocaleDateString('uk-UA').slice(3, 5)
+    const test = new RegExp(`\\d{2}.${targetMonth}.${targetYear}`)
+    const correctMonth = arr.filter((item) => item.date.match(test))
+     return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val)
+}
+
+export function getSalaryPerMonth(arr,titleVal,val){
+	const targetYear = new Date().getFullYear().toString()
+	const test = new RegExp(`\\d{2}.(0${val}||${val}).${targetYear}`)
+
+    const correctMonth = arr.filter((item) => item.date.match(test))
+
+	 return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0))
+		
+	 
 }
 
 export function test(arr, titleVal, val) {
@@ -24,8 +46,19 @@ export function test(arr, titleVal, val) {
     } else if (targetMonth === '10' || targetMonth === '11' || targetMonth === '12') {
         result = arr.filter((item) => item.date.match(dateRegex4))
     }
+	 
+	 if (targetYear >= 2025) return Math.ceil(result.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2025)
+		else  return Math.ceil(result.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2024)
+ }
 
-    return Math.ceil(result.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val)
+
+ export function searchPaymentList(arr,titleVal,data) {
+	
+     const searchYear = new RegExp(`\\d{2}.(0${data.date}||${data.date}).${data.year}`)
+     let result = arr.filter((el) => el[titleVal].match(searchYear))
+	  
+	  
+     return result
  }
 
 export function sortData(arr) {
@@ -58,6 +91,7 @@ export async function getWeatherInfo() {
 
     return { location, temp, feelsLike, weatherStatus, weatherIcon }
 }
+
 
 
 

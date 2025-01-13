@@ -1,12 +1,12 @@
 import DbOperations from '../helpers/DbOperations'
-const collectionDB = new DbOperations('financeData')
-import { HTTP } from '@/store/helpers/http-common.js'
+const collectionDB = new DbOperations('paymentList')
+// import { HTTP } from '@/store/helpers/http-common.js'
 
-import { getInfo, test, getSalaryPerMonth, searchPaymentList, getMySalary } from '@/store/helpers/globalFunction.js'
+import { getSalaryPerMonth, searchPaymentList } from '@/store/helpers/globalFunction.js'
 export default {
     namespaced: true,
     state: () => ({
-        financeObjList: [],
+        paymentObjList: [],
         monthList: [
             'Січень',
             'Лютий',
@@ -24,43 +24,28 @@ export default {
         filteredList: null,
         targetYear: new Date().getFullYear(),
         targetMonth: new Date().toLocaleDateString('uk-UA').slice(3, 5),
-        tax: {
-            tax2024: 0.05,
-            tax2025: 0.06,
-        },
-        dayBonus: 1000,
-        nightBonus: 1000,
         currency: [],
     }),
     getters: {
         getTargetYear: (state) => state.targetYear,
-        getList: (state) => (data) => searchPaymentList(state.financeObjList, 'date', data),
-        getTaxForThreeMonth: (state) => test(state.financeObjList, 'sum', state.tax),
+        getTaxForThreeMonth: (state) => (data) => searchPaymentList(state.paymentObjList, 'date', data),
         getFilteredList: (state) => state.filteredList,
-        getTotalTaxValue: (state) => getInfo(state.financeObjList, 'sum', state.tax),
-        getDayBonusSum: (state) => getMySalary(state.financeObjList, 'dayDeclaration', state.dayBonus),
-        getNightBonusSum: (state) => getMySalary(state.financeObjList, 'nightDeclaration', state.nightBonus),
-        getSalary: (state) => getMySalary(state.financeObjList, 'sum', 1),
         hasError: (state) => state.error,
         getMonthList: (state) => state.monthList,
-        getItemsListFinance: ({ financeObjList }) => financeObjList,
-        getItemById: (state) => (itemId) => state.financeObjList.find((item) => item.id == itemId),
-      //   getTotalSum: (state) => state.financeObjList.reduce((prevEl, item) => prevEl + item.sum, 0),
-        getCorrectCurrency: (state) => {
-            HTTP.get().then((response) => {
-                state.currency = response.data
-            })
-        },
+        getSearchedItemsList: ({ paymentObjList }) => paymentObjList,
+        getItemById: (state) => (itemId) => state.paymentObjList.find((item) => item.id == itemId),
+        getTotalSum: (state) => state.paymentObjList.reduce((prevEl, item) => prevEl + item.sum, 0),
+
         getCurrency: (state) => state.currency,
-        getTest: (state) => state.financeObjList,
-        getSalaryPerMonthMoney: (state) => (val) => getSalaryPerMonth(state.financeObjList, 'sum', val),
+        getTest: (state) => state.paymentObjList,
+        getSalaryPerMonthMoney: (state) => (val) => getSalaryPerMonth(state.paymentObjList, 'sum', val),
     },
     mutations: {
         setItemsList(state, itemsList) {
-            state.financeObjList = itemsList
+            state.paymentObjList = itemsList
         },
         setItemFilteredList(state, itemsList) {
-            state.financeObjList = itemsList
+            state.filteredList = itemsList
         },
 
         setLoading(state, value) {
@@ -124,6 +109,7 @@ export default {
         updateItem({ commit, dispatch }, { itemId, data }) {
             commit('setError', null)
             commit('setLoading', true)
+				
 
             collectionDB
                 .updateItem(itemId, data)
@@ -143,7 +129,7 @@ export default {
             collectionDB
                 .loadFilteredData(fieldTitle, compareOperator, valueToCompare)
                 .then((list) => {
-                    commit('setItemsList', list)
+                    commit('setItemFilteredList', list)
                 })
                 .catch((error) => {
                     commit('setError', error)

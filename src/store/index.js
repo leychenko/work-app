@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 // import appdata from '@/store/modules/financeData.js';
 import declarationData from '@/store/modules/declarationData.js'
 import financeData from '@/store/modules/financeData.js'
+import paymentList from '@/store/modules/paymentData'
 
 export default createStore({
     namespaced: true,
@@ -49,6 +50,6 @@ export default createStore({
     modules: {
         declarationData,
         financeData,
-        
+        paymentList,
     },
 })

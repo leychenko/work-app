@@ -56,6 +56,18 @@ import CurrencyComponent from '@/components/CurrencyComponent.vue'
                     },
                     titleLabel: 'Пошук декл.',
                 },
+					 {
+                    to: {
+                        name: 'payment-page',
+                    },
+                    titleLabel: 'Акти',
+                },
+					 {
+                    to: {
+                        name: 'chartPage',
+                    },
+                    titleLabel: 'Інфо',
+                },
             ],
             isMenuActive: false,
         }
