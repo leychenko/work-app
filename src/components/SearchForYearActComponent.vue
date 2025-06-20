@@ -8,7 +8,7 @@
                 </div>
                 <div class="form__line">
                     <label class="form__label">Введіть рік</label>
-                    <input v-model="userData.year" autocomplete="off" type="number" class="form__input" />
+                    <input v-model="userData.year" autocomplete="off" type="text" class="form__input" />
                 </div>
                 <div class="form__action">
                     <button type="button" class="form__button button" @click="searchData(userData)">Пошук</button>
@@ -62,7 +62,7 @@ export default {
         }
     },
     computed: {
-        ...mapGetters('paymentList', ['getTaxForThreeMonth', 'getSearchedItemsList']),
+        ...mapGetters('paymentList', ['getDataForMonth', 'getSearchedItemsList']),
         getSortListActs() {
             return sortData(this.arr)
         },
@@ -73,8 +73,9 @@ export default {
     methods: {
         ...mapActions('paymentList', ['loadList']),
         searchData(userData) {
+			
             if (this.userData.date && this.userData.year) {
-                const result = this.getTaxForThreeMonth(userData)
+                const result = this.getDataForMonth(userData)
                 this.arr = result
              if (result.length <= 0) this.message = 'Нічого не знайденно'
                 this.userData = {}

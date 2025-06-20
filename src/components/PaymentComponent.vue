@@ -20,7 +20,7 @@
                         Send<font-awesome-icon :icon="['fas', 'share']" />
                     </button>
                     <div v-if="message" class="message">{{ message }}</div>
-                </form> 	
+                </form> 
 				</div>
 				<div class="action">
 					<button type="button" class="button" @click="goToSearch">Розшириний пошук</button>
@@ -57,15 +57,13 @@ import ButtonHomeComponent from '@/components/ButtonHomeComponent.vue';
         }
     },
 	 computed: {
-		...mapGetters('paymentList',['getTest','getTaxForThreeMonth','getFilteredList','getTotalTaxValue','getSalaryPerMonthMoney']),
-
-
+		...mapGetters('paymentList',['getTest','getFilteredList','getTotalTaxValue','getSalaryPerMonthMoney','getAllTaxForThreeMonth']),
 	 },
 	 mounted () {
-		this.loadList()
+		this.loadPaymentList()
 	 },
 		methods: {
-			...mapActions('paymentList',['addItem','loadFilteredList','loadList']),
+			...mapActions('paymentList',['addItem','loadFilteredList','loadPaymentList']),
 			addData() {
             if (this.paymentDataObj.sum && this.paymentDataObj.date && this.paymentDataObj.number )
 				{ 
@@ -93,12 +91,13 @@ import ButtonHomeComponent from '@/components/ButtonHomeComponent.vue';
 				})
 			
 		  },
-		  test(data){
+		//   test(data){
 			
-			const result =this.getTaxForThreeMonth(data)
-			this.arr = result
-			this.data = {}
-		  },
+		// 	const result =getTTTT
+		// 	console.log(result);
+			
+		// 	return result
+		//   },
 
 
 		},

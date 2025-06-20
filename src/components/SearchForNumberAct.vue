@@ -61,7 +61,7 @@ export default {
 		}
 	 },
 	 computed: {
-		...mapGetters('paymentList',['getTest'])
+		...mapGetters('paymentList',['getList'])
 	 },
 	 	 mounted () {
 		this.loadList()
@@ -70,7 +70,7 @@ export default {
 		...mapActions('paymentList',['loadList','updateItem']),
 
 		  searchNumberActs(){
-			const result = this.getTest.find(el=>el.number === this.acts)
+			const result = this.getList.find(el=>el.number === this.acts)
 			this.actObj = result
 			
 		  },

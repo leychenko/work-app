@@ -18,7 +18,7 @@
 					<h4 class="item__title subtitle">Податки :</h4>
 					<div class="item__info">
 						<p>Податків за {{correctMonth.month}}</p><span>{{getTotalTaxValue}} грн.</span>
-						<div v-if="valueTax"><p>Податків за квартал :</p><span>{{getTaxForThreeMonth}} грн.</span></div>
+						<div v-if="valueTax"><p>Податків за квартал :</p><span>{{getAllTaxForThreeMonth}} грн.</span></div>
 					</div>
 				</div>
 				<div class="card__item item">
@@ -58,6 +58,8 @@ import { mapGetters, mapActions } from 'vuex'
             'getTotalTaxValue',
 				'getSalary','getTaxForThreeMonth','getTotalSum'
         ]),
+        ...mapGetters('paymentList', ['getItemsList','getAllTaxForThreeMonth']),
+
         countBonus() {
             return  this.getDayBonusSum + this.getNightBonusSum  
         },
@@ -79,12 +81,18 @@ import { mapGetters, mapActions } from 'vuex'
 		  getSumOnCardWithBonusAndTax(){
 			return this.getTaxForThreeMonth + this.countBonus
 		  },
+		  ttt(){
+			return console.log(this.getAllTaxForThreeMonth);
+			
+		  }
     },
     created() {
         this.loadList()
+		  this.loadPaymentList()
     },
 
     methods: {
+        ...mapActions('paymentList', ['loadPaymentList']),
         ...mapActions('financeData', ['loadList', 'addItem', 'deleteItem', 'updateItem','loadFilteredList']),
         onObjAction() {
             if (this.isEditing) {

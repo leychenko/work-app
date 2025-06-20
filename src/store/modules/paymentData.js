@@ -2,7 +2,7 @@ import DbOperations from '../helpers/DbOperations'
 const collectionDB = new DbOperations('paymentList')
 // import { HTTP } from '@/store/helpers/http-common.js'
 
-import { getSalaryPerMonth, searchPaymentList } from '@/store/helpers/globalFunction.js'
+import { getSalaryPerMonth, searchPaymentList, test2 } from '@/store/helpers/globalFunction.js'
 export default {
     namespaced: true,
     state: () => ({
@@ -25,19 +25,22 @@ export default {
         targetYear: new Date().getFullYear(),
         targetMonth: new Date().toLocaleDateString('uk-UA').slice(3, 5),
         currency: [],
+        tax: {
+            tax2024: 0.05,
+            tax2025: 0.06,
+        },
     }),
     getters: {
         getTargetYear: (state) => state.targetYear,
-        getTaxForThreeMonth: (state) => (data) => searchPaymentList(state.paymentObjList, 'date', data),
+        getAllTaxForThreeMonth: (state) => test2(state.paymentObjList, 'sum', state.tax),
+        getDataForMonth: (state) => (data) => searchPaymentList(state.paymentObjList, 'date', data),
         getFilteredList: (state) => state.filteredList,
         hasError: (state) => state.error,
         getMonthList: (state) => state.monthList,
-        getSearchedItemsList: ({ paymentObjList }) => paymentObjList,
         getItemById: (state) => (itemId) => state.paymentObjList.find((item) => item.id == itemId),
         getTotalSum: (state) => state.paymentObjList.reduce((prevEl, item) => prevEl + item.sum, 0),
-
         getCurrency: (state) => state.currency,
-        getTest: (state) => state.paymentObjList,
+        getList: (state) => state.paymentObjList,
         getSalaryPerMonthMoney: (state) => (val) => getSalaryPerMonth(state.paymentObjList, 'sum', val),
     },
     mutations: {
@@ -56,7 +59,7 @@ export default {
         },
     },
     actions: {
-        loadList({ commit }) {
+        loadPaymentList({ commit }) {
             commit('setError', null)
             commit('setLoading', true)
             collectionDB
@@ -81,7 +84,7 @@ export default {
                     ...item,
                 })
                 .then(() => {
-                    dispatch('loadList')
+                    dispatch('loadPaymentList')
                 })
                 .catch((error) => {
                     commit('setError', error)
@@ -97,7 +100,7 @@ export default {
             collectionDB
                 .deleteItem(itemId)
                 .then(() => {
-                    dispatch('loadList')
+                    dispatch('loadPaymentList')
                 })
                 .catch((error) => {
                     commit('setError', error)
@@ -109,12 +112,11 @@ export default {
         updateItem({ commit, dispatch }, { itemId, data }) {
             commit('setError', null)
             commit('setLoading', true)
-				
 
             collectionDB
                 .updateItem(itemId, data)
                 .then(() => {
-                    dispatch('loadList')
+                    dispatch('loadPaymentList')
                 })
                 .catch((error) => {
                     commit('setError', error)
