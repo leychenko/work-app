@@ -79,12 +79,8 @@ import { mapGetters, mapActions } from 'vuex'
 			return this.getSalary - this.countBonus - this.getTotalTaxValue
 		  },
 		  getSumOnCardWithBonusAndTax(){
-			return this.getTaxForThreeMonth + this.countBonus
+			return this.getAllTaxForThreeMonth + this.countBonus
 		  },
-		  ttt(){
-			return console.log(this.getAllTaxForThreeMonth);
-			
-		  }
     },
     created() {
         this.loadList()
