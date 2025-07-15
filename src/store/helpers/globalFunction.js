@@ -3,9 +3,15 @@ export function getInfo(arr, titleVal, val) {
 	const targetMonth = new Date().toLocaleDateString('uk-UA').slice(3, 5)
 	const test = new RegExp(`\\d{2}.${targetMonth}.${targetYear}`)
  const correctMonth = arr.filter((item) => item.date.match(test))
+ const correctTaxForMonth = arr.filter((item) => item.cashDay?.match(test))
    //  return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val)
-	 if (targetYear >= 2025) return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2025)
-     else return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2024)
+	const resultCorrectMonth = Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2025)
+	const resultCorrectTaxForMonth = Math.ceil(
+        correctTaxForMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2025
+    )
+	//  if (targetYear >= 2025) return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2025)
+   //   else return Math.ceil(correctMonth.reduce((prevEl, el) => prevEl + el[titleVal], 0) * val.tax2024)
+	return { resultCorrectMonth, resultCorrectTaxForMonth }
 }
 export function getMySalary(arr, titleVal, val) {
     const targetYear = new Date().getFullYear().toString()

@@ -17,7 +17,7 @@
 				<div class="card__item item">
 					<h4 class="item__title subtitle">Податки :</h4>
 					<div class="item__info">
-						<p>Податків за {{correctMonth.month}}</p><span>{{getTotalTaxValue}} грн.</span>
+						<p>Податків за {{correctMonth.month}}</p><span>{{getTaxForMonth.resultCorrectTaxForMonth}} грн.</span>
 						<div v-if="valueTax"><p>Податків за квартал :</p><span>{{getAllTaxForThreeMonth}} грн.</span></div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@ import { mapGetters, mapActions } from 'vuex'
             'getTotalTaxValue',
 				'getSalary','getTaxForThreeMonth','getTotalSum'
         ]),
-        ...mapGetters('paymentList', ['getItemsList','getAllTaxForThreeMonth']),
+        ...mapGetters('paymentList', ['getItemsList','getAllTaxForThreeMonth','getTaxForMonth']),
 
         countBonus() {
             return  this.getDayBonusSum + this.getNightBonusSum  
@@ -76,7 +76,7 @@ import { mapGetters, mapActions } from 'vuex'
 			return this.getTaxForThreeMonth !== this.getTotalTaxValue
 		  },
 		  getSumSalary(){
-			return this.getSalary - this.countBonus - this.getTotalTaxValue
+			return this.getSalary - this.countBonus - this.getTotalTaxValue.resultCorrectMonth
 		  },
 		  getSumOnCardWithBonusAndTax(){
 			return this.getAllTaxForThreeMonth + this.countBonus

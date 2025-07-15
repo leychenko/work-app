@@ -2,7 +2,7 @@ import DbOperations from '../helpers/DbOperations'
 const collectionDB = new DbOperations('paymentList')
 // import { HTTP } from '@/store/helpers/http-common.js'
 
-import { getSalaryPerMonth, searchPaymentList, test2 } from '@/store/helpers/globalFunction.js'
+import { getSalaryPerMonth, searchPaymentList, test2,getInfo } from '@/store/helpers/globalFunction.js'
 export default {
     namespaced: true,
     state: () => ({
@@ -32,6 +32,7 @@ export default {
     }),
     getters: {
         getTargetYear: (state) => state.targetYear,
+        getTaxForMonth: (state) => getInfo(state.paymentObjList, 'sum', state.tax),
         getAllTaxForThreeMonth: (state) => test2(state.paymentObjList, 'sum', state.tax),
         getDataForMonth: (state) => (data) => searchPaymentList(state.paymentObjList, 'date', data),
         getFilteredList: (state) => state.filteredList,
